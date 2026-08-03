@@ -1,0 +1,12 @@
+{
+  "exportedAt": "2026-08-03T19:35:30.364Z",
+  "source": "bundle",
+  "files": [
+    "docker/backend/Dockerfile",
+    "docker/frontend/Dockerfile",
+    "docker/frontend/nginx.conf",
+    "docker/docker-compose.yml",
+    "docker/README-DOCKER.md",
+    "docker/README.md"
+  ]
+}
