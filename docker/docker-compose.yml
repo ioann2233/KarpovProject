@@ -1,0 +1,31 @@
+services:
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URL: file:/app/data/prod.db
+      JWT_SECRET: ${JWT_SECRET:-feature88-dev-jwt-secret-change-in-production}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:5173}
+      PORT: 3001
+      COOKIE_SECURE: "false"
+      DEV_AUTH_ENABLED: ${DEV_AUTH_ENABLED:-true}
+      PROJECT_ROOT: /app
+    ports:
+      - "3001:3001"
+    volumes:
+      - uploads:/app/uploads
+      - api-data:/app/data
+
+  web:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:80"
+    depends_on:
+      - api
+
+volumes:
+  uploads:
+  api-data:
